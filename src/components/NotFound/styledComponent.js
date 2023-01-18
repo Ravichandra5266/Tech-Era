@@ -3,29 +3,35 @@ import styled from 'styled-components'
 export const NotFoundContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   width: 100%;
-  padding: 10px;
 `
 export const NotFoundImage = styled.img`
-  width: 250px;
+  width: 100%;
+  padding: 20px;
   @media screen and (min-width: 768px) {
-    width: 500px;
+    width: 400px;
   }
 `
-
-export const NotFoundHeading = styled.h1`
-  color: #1e293b;
+export const Heading = styled.h1`
+  color: black;
   font-size: 22px;
   font-weight: bold;
   font-family: roboto;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `
-
-export const NotFoundPara = styled.p`
-  color: #64748b;
-  font-size: 18px;
+export const Description = styled.p`
+  color: black;
+  font-size: 15px;
   font-weight: 500;
   font-family: roboto;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `

@@ -2,21 +2,21 @@ import {Component} from 'react'
 
 import Loader from 'react-loader-spinner'
 
-import CoursesItem from '../CoursesItem'
+import CourseItem from '../CourseItem'
 
 import Header from '../Header'
 
 import {
   CoursesContainer,
   Heading,
+  CourseItemsListContainer,
   SpinnerContainer,
-  CoursesListContainer,
   FailureViewContainer,
-  FailureImg,
+  FailureImage,
   FailureHeading,
   FailureDescription,
-  FailureRetryBtn,
-} from './styledComponents'
+  FailureBtn,
+} from './styledComponent'
 
 const ApiStatusConstant = {
   initial: 'INITIAL',
@@ -28,7 +28,7 @@ const ApiStatusConstant = {
 class Courses extends Component {
   state = {
     urlStatus: ApiStatusConstant.initial,
-    initialCoursesData: [],
+    coursesList: [],
   }
 
   componentDidMount() {
@@ -37,43 +37,41 @@ class Courses extends Component {
 
   getCoursesData = async () => {
     this.setState({urlStatus: ApiStatusConstant.inProgress})
-
     const coursesApiUrl = 'https://apis.ccbp.in/te/courses'
-
     const responseUrl = await fetch(coursesApiUrl)
-
-    // console.log(responseUrl)
-
     if (responseUrl.ok === true) {
       const responseData = await responseUrl.json()
-
-      //   console.log(responseData)
-
       const updatedData = responseData.courses.map(eachItem => ({
         id: eachItem.id,
         name: eachItem.name,
         logoUrl: eachItem.logo_url,
       }))
-
-      //   console.log(updatedData)
-
       this.setState({
         urlStatus: ApiStatusConstant.success,
-        initialCoursesData: updatedData,
+        coursesList: updatedData,
       })
     } else {
       this.setState({urlStatus: ApiStatusConstant.failure})
     }
   }
 
+  renderSpinnerView = () => (
+    <SpinnerContainer data-testid="loader">
+      <Loader type="TailSpin" color="blue" height="50" width="50" />
+    </SpinnerContainer>
+  )
+
   renderSuccessView = () => {
-    const {initialCoursesData} = this.state
+    const {coursesList} = this.state
     return (
-      <CoursesListContainer>
-        {initialCoursesData.map(eachItem => (
-          <CoursesItem eachItem={eachItem} key={eachItem.id} />
-        ))}
-      </CoursesListContainer>
+      <>
+        <Heading>Courses</Heading>
+        <CourseItemsListContainer>
+          {coursesList.map(eachItem => (
+            <CourseItem eachItem={eachItem} key={eachItem.id} />
+          ))}
+        </CourseItemsListContainer>
+      </>
     )
   }
 
@@ -83,52 +81,46 @@ class Courses extends Component {
 
   renderFailureView = () => (
     <FailureViewContainer>
-      <FailureImg
+      <FailureImage
         src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
-        alt=" failure view"
+        alt="failure view"
       />
-      <FailureHeading>Oops!Something Went Wrong</FailureHeading>
+      <FailureHeading>Ooops! Something Went Wrong</FailureHeading>
       <FailureDescription>
-        We Cannot Seem to find the page you are looking for.
+        We cannot seem to find the page you are looking for.
       </FailureDescription>
-      <FailureRetryBtn type="button" onClick={this.onClickRetry}>
+      <FailureBtn type="button" onClick={this.onClickRetry}>
         Retry
-      </FailureRetryBtn>
+      </FailureBtn>
     </FailureViewContainer>
   )
 
-  renderSpinnerView = () => (
-    <SpinnerContainer data-testid="loader">
-      <Loader type="TailSpin" color="blue" height="50" width="50" />
-    </SpinnerContainer>
-  )
-
-  RenderCourses = () => {
+  renderCourseItems = () => {
     const {urlStatus} = this.state
-    let result = null
+    let results = null
+
     switch (urlStatus) {
       case ApiStatusConstant.success:
-        result = this.renderSuccessView()
+        results = this.renderSuccessView()
         break
       case ApiStatusConstant.failure:
-        result = this.renderFailureView()
+        results = this.renderFailureView()
         break
       case ApiStatusConstant.inProgress:
-        result = this.renderSpinnerView()
+        results = this.renderSpinnerView()
         break
       default:
-        result = null
+        results = ''
         break
     }
-    return result
+    return results
   }
 
   render() {
     return (
       <CoursesContainer>
         <Header />
-        <Heading>Courses</Heading>
-        {this.RenderCourses()}
+        {this.renderCourseItems()}
       </CoursesContainer>
     )
   }

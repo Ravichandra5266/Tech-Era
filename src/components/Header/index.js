@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-import {HeaderContainer, HeaderLogo} from './styledComponents'
+import {HeaderContainer, HeaderLogo} from './styledComponent'
 
 const Header = () => (
   <Link to="/">
@@ -12,4 +12,5 @@ const Header = () => (
     </HeaderContainer>
   </Link>
 )
+
 export default Header

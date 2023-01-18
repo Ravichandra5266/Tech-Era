@@ -1,56 +1,57 @@
 import styled from 'styled-components'
 
-export const EachCourseDetails = styled.div`
+export const CourseItemDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
   width: 100%;
-  padding: 10px;
-  padding-top: 0px;
 `
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 10px;
   align-items: center;
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
 `
-export const CourseImg = styled.img`
+export const CourseDetailsImage = styled.img`
   width: 100%;
+  padding: 20px;
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
 `
-export const ContentContainer = styled.div`
+export const CourseContentDetailsContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
-  margin-left: 20px;
+  flex-direction: column;
 `
-export const CourseHeading = styled.h1`
-  color: #1e293b;
+export const CourseTitle = styled.h1`
+  color: ;
   font-size: 22px;
   font-weight: bold;
   font-family: roboto;
   @media screen and (min-width: 768px) {
-    font-size: 50px;
+    font-size: 35px;
   }
 `
-
 export const CourseDescription = styled.p`
-  color: #1e293b;
-  font-size: 16px;
-  font-weight: 500;
+  color: ;
+  font-size: 15px;
   font-family: roboto;
+  margin: 0px;
   @media screen and (min-width: 768px) {
-    font-size: 20px;
-    width: 60%;
+    font-size: 18px;
+    width: 80%;
   }
 `
 export const SpinnerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `
 export const FailureViewContainer = styled.div`
@@ -58,30 +59,46 @@ export const FailureViewContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 10px;
 `
-export const FailureImg = styled.img`
-  width: 250px;
+export const FailureImage = styled.img`
+  width: 100%;
+  padding: 10px;
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
 `
 export const FailureHeading = styled.h1`
   color: #4656a1;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   font-family: roboto;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `
 export const FailureDescription = styled.p`
   color: #64748b;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   font-family: roboto;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
 `
-export const FailureRetryBtn = styled.button`
-  color: #e8e8e8;
+export const FailureBtn = styled.button`
+  color: #ffffff;
   font-size: 18px;
   font-weight: bold;
   font-family: roboto;
   height: 40px;
-  width: 100px;
+  width: 120px;
   border: 1px solid transparent;
   background-color: #4656a1;
+  border-radius: 5px;
   cursor: pointer;
 `
